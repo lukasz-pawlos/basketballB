@@ -2,6 +2,7 @@ package pl.losiek.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import pl.losiek.dto.other.ScoreDTO;
 import pl.losiek.dto.request.CreateMatchDTO;
 import pl.losiek.exception.ApiException;
 import pl.losiek.model.Match;
@@ -37,4 +38,12 @@ public class MatchService {
         return match.orElseThrow(() -> new ApiException("Match not found", NOT_FOUND));
     }
 
+    public void updateScore(Long matchId, ScoreDTO score) {
+        Match match = getMatch(matchId);
+
+        match.setHomeScore(score.getHomeScore());
+        match.setGuestScore(score.getGuestScore());
+
+        matchRepository.save(match);
+    }
 }

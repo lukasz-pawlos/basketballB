@@ -3,8 +3,8 @@ package pl.losiek.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pl.losiek.dto.other.ScoreDTO;
 import pl.losiek.dto.request.CreateMatchDTO;
-import pl.losiek.dto.response.PlayerDTO;
 import pl.losiek.model.Match;
 import pl.losiek.service.MatchService;
 
@@ -31,5 +31,11 @@ public class MatchController {
     @GetMapping("/{matchId}")
     public ResponseEntity<Match> getMatchById(@PathVariable Long matchId) {
         return ResponseEntity.ok(matchService.getMatch(matchId));
+    }
+
+    @PatchMapping("/{matchId}")
+    public ResponseEntity<Void> updateScore(@PathVariable Long matchId, @RequestBody ScoreDTO request) {
+        matchService.updateScore(matchId, request);
+        return  ResponseEntity.ok().build();
     }
 }

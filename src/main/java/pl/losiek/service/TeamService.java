@@ -1,12 +1,11 @@
 package pl.losiek.service;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import pl.losiek.converter.TeamConverter;
 import pl.losiek.dto.request.CreateTeamDTO;
 import pl.losiek.dto.response.TeamDTO;
 import pl.losiek.exception.ApiException;
+import pl.losiek.model.Team;
 import pl.losiek.repository.TeamRepository;
 
 import java.util.List;
@@ -29,9 +28,12 @@ public class TeamService {
     }
 
     public TeamDTO getTeam(Long teamId){
+        return convertTODTO(findTeam(teamId));
+    }
+
+    public Team findTeam(Long teamId){
         return teamRepository
                 .findById(teamId)
-                .map(TeamConverter::convertTODTO)
                 .orElseThrow(() -> new ApiException("Team not found", NOT_FOUND));
     }
 }

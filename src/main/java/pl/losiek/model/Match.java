@@ -5,6 +5,7 @@ import pl.losiek.dto.response.TeamDTO;
 
 import javax.persistence.*;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import static javax.persistence.GenerationType.IDENTITY;
@@ -31,9 +32,12 @@ public class Match {
 
     Integer guestScore;
 
-    public Match(Team homeTeam, Team guestTeam) {
+    LocalDateTime date;
+
+    public Match(Team homeTeam, Team guestTeam, LocalDateTime date) {
         this.homeTeam = homeTeam;
         this.guestTeam = guestTeam;
+        this.date = date;
     }
 
 }

@@ -18,9 +18,11 @@ import static pl.losiek.converter.TeamConverter.*;
 public class TeamService {
 
     final TeamRepository teamRepository;
+    final StandingService standingService;
 
     public void createTeam(CreateTeamDTO request) {
-        teamRepository.save(convertTOEntity(request));
+        Team team = teamRepository.save(convertToEntity(request));
+        standingService.createStanding(team);
     }
 
     public List<TeamDTO> getTeams() {
@@ -28,7 +30,7 @@ public class TeamService {
     }
 
     public TeamDTO getTeam(Long teamId){
-        return convertTODTO(findTeam(teamId));
+        return convertToDTO(findTeam(teamId));
     }
 
     public Team findTeam(Long teamId){

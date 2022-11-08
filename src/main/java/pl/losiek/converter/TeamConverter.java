@@ -9,14 +9,14 @@ import java.util.stream.Collectors;
 
 public class TeamConverter {
 
-    public static Team convertTOEntity(CreateTeamDTO request) {
+    public static Team convertToEntity(CreateTeamDTO request) {
         return new Team(
                 request.getName(),
                 request.getCity()
         );
     }
 
-    public static TeamDTO convertTODTO(Team team) {
+    public static TeamDTO convertToDTO(Team team) {
         return new TeamDTO(
                 team.getId(),
                 team.getName(),
@@ -27,7 +27,7 @@ public class TeamConverter {
     public static List<TeamDTO> convertTODTOS(List<Team> teams) {
         return teams
                 .stream()
-                .map(TeamConverter::convertTODTO)
+                .map(TeamConverter::convertToDTO)
                 .collect(Collectors.toList());
     }
 }

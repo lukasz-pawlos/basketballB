@@ -6,7 +6,6 @@ import pl.losiek.converter.PlayerConverter;
 import pl.losiek.dto.request.CreatePlayerDTO;
 import pl.losiek.dto.response.PlayerDTO;
 import pl.losiek.exception.ApiException;
-import pl.losiek.model.Match;
 import pl.losiek.model.Player;
 import pl.losiek.repository.PlayerRepository;
 

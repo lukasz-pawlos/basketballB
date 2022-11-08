@@ -23,7 +23,8 @@ public class MatchService {
     public void createMatch(CreateMatchDTO request) {
         Match match = new Match(
                 teamService.findTeam(request.getHomeTeamId()),
-                teamService.findTeam(request.getGuestTeamId())
+                teamService.findTeam(request.getGuestTeamId()),
+                request.getDate()
         );
         matchRepository.save(match);
     }

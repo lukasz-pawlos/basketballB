@@ -3,14 +3,10 @@ package pl.losiek.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.losiek.dto.request.CreateStatDTO;
-import pl.losiek.exception.ApiException;
 import pl.losiek.model.Stat;
 import pl.losiek.repository.StatRepository;
 
 import java.util.List;
-import java.util.Optional;
-
-import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @Service
 @RequiredArgsConstructor
@@ -34,10 +30,10 @@ public class StatService {
     }
 
     public List<Stat> getStatsByPlayerId(Long playerId) {
-        return statRepository.findByPlayer(playerService.findPlayer(playerId));
+        return statRepository.findByPlayerId(playerId);
     }
 
     public List<Stat> getStatsByMatchId(Long matchId) {
-        return statRepository.findByMatch(matchService.getMatch(matchId));
+        return statRepository.findByMatch(matchId);
     }
 }

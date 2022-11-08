@@ -6,9 +6,12 @@ import pl.losiek.converter.PlayerConverter;
 import pl.losiek.dto.request.CreatePlayerDTO;
 import pl.losiek.dto.response.PlayerDTO;
 import pl.losiek.exception.ApiException;
+import pl.losiek.model.Match;
+import pl.losiek.model.Player;
 import pl.losiek.repository.PlayerRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.springframework.http.HttpStatus.CONFLICT;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
@@ -44,6 +47,12 @@ public class PlayerService {
         return playerRepository
                 .findById(playerId)
                 .map(PlayerConverter::convertToDTO)
+                .orElseThrow(() -> new ApiException("Player not found", NOT_FOUND));
+    }
+
+    public Player findPlayer(Long playerId) {
+        return playerRepository
+                .findById(playerId)
                 .orElseThrow(() -> new ApiException("Player not found", NOT_FOUND));
     }
 }

@@ -11,7 +11,7 @@ public class StandingConverter {
     public static StandingDTO convertToDTO(Standing standing) {
         return new StandingDTO(
                 standing.getId(),
-                standing.getTeam().getId(),
+                standing.getTeam(),
                 standing.getWin(),
                 standing.getLose(),
                 standing.getPoints()

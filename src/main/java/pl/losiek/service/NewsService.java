@@ -1,6 +1,7 @@
 package pl.losiek.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import pl.losiek.converter.NewsConverter;
 import pl.losiek.dto.request.CreateNewsDTO;
@@ -32,7 +33,7 @@ public class NewsService {
     }
 
     public List<NewsDTO> getNews() {
-        return convertToDTOS(newsRepository.findAll());
+        return convertToDTOS(newsRepository.findAll(Sort.by(Sort.Direction.DESC, "Id")));
     }
 
     public NewsDTO getNewsById(Long newsId) {

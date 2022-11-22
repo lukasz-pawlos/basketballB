@@ -22,6 +22,12 @@ public class PlayerController {
         return ResponseEntity.ok().build();
     }
 
+    @DeleteMapping("/{playerId}")
+    public ResponseEntity<Void> deletePlayer(@PathVariable Long playerId) {
+        playerService.deletePlayer(playerId);
+        return ResponseEntity.ok().build();
+    }
+
     @GetMapping
     public ResponseEntity<List<PlayerDTO>> getPlayers() {
         return ResponseEntity.ok(playerService.getPlayers());

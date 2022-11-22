@@ -1,6 +1,7 @@
 package pl.losiek.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import pl.losiek.dto.other.ScoreDTO;
 import pl.losiek.dto.request.CreateMatchDTO;
@@ -30,7 +31,7 @@ public class MatchService {
     }
 
     public List<Match> getMatches() {
-        return matchRepository.findAll();
+        return matchRepository.findAll(Sort.by(Sort.Direction.ASC, "Id"));
     }
 
     public Match getMatch(Long matchId) {

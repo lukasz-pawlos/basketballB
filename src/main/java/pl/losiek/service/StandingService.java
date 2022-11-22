@@ -1,6 +1,7 @@
 package pl.losiek.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import pl.losiek.converter.PlayerConverter;
 import pl.losiek.converter.StandingConverter;
@@ -32,7 +33,7 @@ public class StandingService {
     }
 
     public List<StandingDTO> getStandings() {
-        return convertToDTOS(standingRepository.findAll());
+        return convertToDTOS(standingRepository.findAll(Sort.by(Sort.Direction.DESC, "Points")));
     }
 
     public Standing findStanding(Long teamId) {

@@ -1,6 +1,7 @@
 package pl.losiek.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import pl.losiek.converter.PlayerConverter;
 import pl.losiek.dto.request.CreatePlayerDTO;
@@ -31,8 +32,12 @@ public class PlayerService {
         playerRepository.save(convertToEntity(request));
     }
 
+    public void deletePlayer(Long playerId) {
+        playerRepository.deleteById(playerId);
+    }
+
     public List<PlayerDTO> getPlayers() {
-        return convertToDTOS(playerRepository.findAll());
+        return convertToDTOS(playerRepository.findAll(Sort.by(Sort.Direction.ASC, "Id")));
     }
 
     public PlayerDTO getPlayer(Long playerId) {

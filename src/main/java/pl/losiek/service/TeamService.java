@@ -1,6 +1,7 @@
 package pl.losiek.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import pl.losiek.dto.request.CreateTeamDTO;
 import pl.losiek.dto.response.TeamDTO;
@@ -26,7 +27,7 @@ public class TeamService {
     }
 
     public List<TeamDTO> getTeams() {
-        return convertTODTOS(teamRepository.findAll());
+        return convertTODTOS(teamRepository.findAll(Sort.by(Sort.Direction.ASC, "Id")));
     }
 
     public TeamDTO getTeam(Long teamId){
